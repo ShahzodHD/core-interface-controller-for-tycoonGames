@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class ShopZone : MonoBehaviour
 {
-    [SerializeField] private int itemCost;
-    [SerializeField] private int fullPrice;
+    [Header("Parameters about the object being purchased")]
     [SerializeField] GameObject itemToBuy;
+    [SerializeField] private int fullPrice;
+    [SerializeField] private int itemCost;
+
+    [Header("Parameters about add position of the object")]
+    [SerializeField] private int posX = 0;
+    [SerializeField] private int posY = 0;
+    [SerializeField] private int posZ = 0;
 
     [SerializeField] private float framesPerUpdate = 3;
     private float frameCount = 0;
@@ -41,7 +47,9 @@ public class ShopZone : MonoBehaviour
         {
             Instantiate(itemToBuy);
             Vector3 newPosition = gameObject.transform.position;
-            newPosition.z += 2;
+            newPosition.x += posX;
+            newPosition.y += posY;
+            newPosition.z += posZ;
             itemToBuy.transform.position = newPosition;
             Destroy(gameObject);
         }
