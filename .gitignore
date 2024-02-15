@@ -1,0 +1,7 @@
+ECHO is on.
+/Library/
+/Temp/
+/.vscode/
+/.vsconfig/
+.vsconfig
+/Logs/

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ShopZone : MonoBehaviour
 {
@@ -8,11 +6,6 @@ public class ShopZone : MonoBehaviour
     [SerializeField] GameObject itemToBuy;
     [SerializeField] private int fullPrice;
     [SerializeField] private int itemCost;
-
-    [Header("Parameters about add position of the object")]
-    [SerializeField] private int posX = 0;
-    [SerializeField] private int posY = 0;
-    [SerializeField] private int posZ = 0;
 
     [SerializeField] private float framesPerUpdate = 3;
     private float frameCount = 0;
@@ -23,7 +16,6 @@ public class ShopZone : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                PlayerController playerController = other.GetComponent<PlayerController>();
                 if (CurrencyManager.instance.CanAfford(itemCost))
                 {
                     CurrencyManager.instance.SpendCurrency(itemCost);
@@ -45,12 +37,7 @@ public class ShopZone : MonoBehaviour
     {
         if (fullPrice <= 0)
         {
-            Instantiate(itemToBuy);
-            Vector3 newPosition = gameObject.transform.position;
-            newPosition.x += posX;
-            newPosition.y += posY;
-            newPosition.z += posZ;
-            itemToBuy.transform.position = newPosition;
+            itemToBuy.SetActive(true);
             Destroy(gameObject);
         }
     }
